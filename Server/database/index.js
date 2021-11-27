@@ -19,7 +19,7 @@ module.exports = {
     },
 
     async getDislike(videoId) {
-        return await pool.query("SELECT count FROM dislikes WHERE id = $1", [videoId]);
+        return (await pool.query("SELECT count FROM dislikes WHERE id = $1", [videoId])).rows;
     }
 
 }
