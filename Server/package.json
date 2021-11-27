@@ -1,20 +1,20 @@
 {
-  "name": "mlh-hackathon-nodejs-starter",
+  "name": "the-right-opinion",
   "version": "0.1.0",
-  "description": "A hackathon starting point for new Nodejs applications",
+  "description": "Server for TheRightOpinion",
   "scripts": {
-    "start": "nodemon app/index.js",
-    "deploy": "NODE_ENV=production node app/index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "compression": "^1.7.3",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "express-handlebars": "^4.0.4",
-    "express-session": "^1.15.6",
+    "google-auth-library": "^7.10.2",
+    "googleapis": "^91.0.0",
     "morgan": "^1.9.1",
-    "pg": "^8.2.1",
+    "pg": "^8.7.1",
     "pg-hstore": "^2.3.2",
     "sequelize": ">=5.3.0"
   },
