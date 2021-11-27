@@ -1,0 +1,9 @@
+.Landing {
+    width: 800px;
+    height: 1200px;
+}
+
+.Search, .SearchText {
+    padding: 0rem;
+    margin: 0.1rem;
+}
