@@ -29,7 +29,7 @@ const getVideoData = async (id) => {
     }
 
     const sentiment = await getSentiment(parseVideos);
-    const dislikes = await db.getDislike(id);
+    const dislikes = (await db.getDislike(id).count) || 0;
     
     return {
         viewCount,
