@@ -1,13 +1,15 @@
 import * as React from "react";
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './reducers/store';
 import Landing from './popups/landing';
 import Result from './popups/result';
 import Search from './popups/search';
 import "./App.css";
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div className="App">
+    <Provider store={store}>
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -15,7 +17,7 @@ const App = () => {
           <Route path="/result/:url" element={<Result />} />
         </Routes>
       </MemoryRouter>
-    </div>
+    </Provider>
   );
 };
 
