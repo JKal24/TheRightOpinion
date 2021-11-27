@@ -7,11 +7,16 @@ const getVideoData = async (id) => {
     const videoUrl = `${url}videos?${appendKey}&type=video&part=statistics,snippet&id=${id}`;
     const data = (await axios.get(videoUrl)).data.items;
 
-    const viewCount = data[0].statistics.viewCount;
-    const upvoteCount = data[0].statistics.likeCount;
+    const viewCount = parseInt(data[0].statistics.viewCount);
+    const upvoteCount = parseInt(data[0].statistics.likeCount);
 
     const channelId = data[0].snippet.channelId || '';
     const channelData = (await makeChannelRequest(channelId)).data.items;
+
+    let videoName = '';
+    let description = '';
+    let name = '';
+    let thumbnails = {};
 
     const parseVideos = [];
 
@@ -25,6 +30,12 @@ const getVideoData = async (id) => {
             parseVideos.push(dataId);
             top++;
             if (top >= 5) break;
+        } else if (dataId) {
+            const snippet = dataPiece.snippet;
+            videoName = snippet.title;
+            description = snippet.description;
+            name = snippet.channelTitle;
+            thumbnails = snippet.thumbnails;
         }
     }
 
@@ -35,7 +46,11 @@ const getVideoData = async (id) => {
         viewCount,
         upvoteCount,
         sentiment,
-        dislikes
+        dislikes,
+        videoName,
+        description,
+        name,
+        thumbnails
     }
 }
 

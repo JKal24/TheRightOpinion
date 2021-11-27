@@ -22,9 +22,11 @@ const Landing = () => {
         // If it matched the previous regex, it will match this one as well.
         let id = url?.match("v=[^\?]*")![0];
         id = id?.slice(2, id.length)!;
-        dispatch(readStats(id)).then(_ => {
-          navigate(`/search`);
-        })
+        // dispatch(readStats(id)).then(_ => {
+        //   navigate(`/search`);
+        // })
+
+        navigate(`/search`);
 
       } else {
         setHasPage(false);

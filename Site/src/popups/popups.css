@@ -3,7 +3,40 @@
     height: 1200px;
 }
 
-.Search, .SearchText {
-    padding: 0rem;
-    margin: 0.1rem;
+.Search {
+    display: block;
+    background-color: rgb(195, 195, 195);
+    border: 0.2rem black solid;
+    padding: 0.2rem;
+}
+
+.header, .count, .sentiment {
+    display: flex;
+    flex-direction: row;
+    word-wrap: break-word;
+    justify-content: space-around;  
+}
+
+.header {
+    width: max-content;
+}
+
+.count, .sentiment {
+    width: 100%;
+}
+
+.dislikes {
+    display: flex;
+    flex-flow: nowrap row;
+}
+
+.title {
+    display: inline-block;
+    margin: 1rem;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
