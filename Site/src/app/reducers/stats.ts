@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPageStats } from '../data'
+import { getPageStats } from '../../data'
 
 export const readStats = createAsyncThunk('stats/input',
     async (id : String, { rejectWithValue }) => {
         try {
-            return await getPageStats(id);
+            const data = await getPageStats(id);
+            return data;
         } catch (err) {
             rejectWithValue("Could not gather stats for the given url");
         }
@@ -15,22 +16,26 @@ const statsSlice = createSlice({
     name: "stats",
     initialState: {
         dislikes: 0,
-        views: 0,
-        upvotes: 0,
+        viewCount: 0,
+        upvoteCount: 0,
         sentiment: 0
     },
     reducers: {
         input: (state, action) => {
             const newState = action.payload;
 
-            state = {...newState};
+            state = newState;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(readStats.fulfilled, (state, action) => {
             const newState = action.payload;
 
-            state = {...newState};
+            console.log(newState);
+
+            state = newState;
+
+            console.log(state);
         })
     }
 })
