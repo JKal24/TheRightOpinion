@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getPageStats, updateDislikes } from '../../data'
 
 export const readStats = createAsyncThunk('stats/input',
-    async (id: String, { rejectWithValue }) => {
+    async (id: string, { rejectWithValue }) => {
         try {
             const data = await getPageStats(id);
             return data;
@@ -21,33 +21,19 @@ export const changeDislike = createAsyncThunk('stats/dislike',
     }
 )
 
-const example = {
-    dislikes: 33,
-    viewCount: 4510,
-    upvoteCount: 954,
-    sentiment: 0.082543521456,
-    author: 'Joey',
-    thumbnailUrl: 'https://i.ytimg.com/vi/sRz8IfHsp9Y/default.jpg',
-    description: 'The Anime Man channel is in a bit of danger, and I just wanna say some things. Twitter: https://twitter.com/TheAn1meMan Main Channel: ...' +
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    videoName: 'My YouTube Channel Might Disappear Soon.',
-    videoID: 'sRz8IfHsp9Y'
-}
-
 const statsSlice = createSlice({
     name: "stats",
-    initialState: example,
-    // initialState: {
-    //     dislikes: 0,
-    //     viewCount: 0,
-    //     upvoteCount: 0,
-    //     sentiment: 0,
-    //     author: '',
-    //     thumbnailUrl: '',
-    //     description: '',
-    //     videoName: '',
-    //     videoID: ''
-    // },
+    initialState: {
+        dislikes: 0,
+        viewCount: 0,
+        upvoteCount: 0,
+        sentiment: 0,
+        author: '',
+        thumbnailUrl: '',
+        description: '',
+        videoName: '',
+        videoID: ''
+    },
     reducers: { },
     extraReducers: (builder) => {
         builder.addCase(readStats.fulfilled, (state, action) => {

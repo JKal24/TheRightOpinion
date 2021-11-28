@@ -8,8 +8,10 @@ import { useAppDispatch } from "../app/hooks";
 const Landing = () => {
 
   const dispatch = useAppDispatch()
-  const [hasPage, setHasPage] = React.useState(true);
   const navigate = useNavigate();
+
+  const [text, setText] = React.useState('');
+  const [hasPage, setHasPage] = React.useState(true);
 
   React.useEffect(() => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
@@ -36,22 +38,31 @@ const Landing = () => {
     
   }, []);
 
+  function updateText(e : React.FormEvent<HTMLInputElement>) {
+    e.preventDefault();
+
+    setText(e.currentTarget.value);
+  }
+
+  function searchText() {
+    console.log(text);
+  }
+
   return (
     <div className="landing">
       <div className="search-bar">
-
+        <input type="text" className="SearchText" onChange={updateText}></input>
+        <button className="Search" onClick={searchText}><FiSearch/></button>
       </div>
-      <input type="text" className="SearchText"></input>
-      <button className="Search"><FiSearch/></button>
       {
         hasPage ? (
-          <div className="info">
+          <h4 className="info">
             Searching your current page...
-          </div>
+          </h4>
         ) : (
-          <div className="info">
+          <h2 className="info">
             Not on a youtube video page, feel free to search for a video using an ID.
-          </div>
+          </h2>
         )
       }
       

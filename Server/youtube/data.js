@@ -3,6 +3,28 @@ const url = "https://www.googleapis.com/youtube/v3/";
 const appendKey = 'key=' + process.env.YT_API_KEY;
 const db = require('../database');
 
+const getVideos = async (query) => {
+    const testUrl = `${url}search?part=snippet&q=${query}&max-results=5&${appendKey}`;
+    const data = (await axios.get(testUrl)).data.items;
+
+    const videos = [];
+
+    for (let i = 0; i < data.length; i++) {
+        const video = data[i];
+
+        videos.push({
+            id: video.id.videoId,
+            title: video.snippet.title,
+            description: video.snippet.description,
+            thumbnails: video.snippet.thumbnails,
+            author: video.snippet.channelTitle
+        })
+    }
+
+    console.log(videos);
+    return videos;
+}
+
 const getVideoData = async (id) => {
     const videoUrl = `${url}videos?${appendKey}&type=video&part=statistics,snippet&id=${id}`;
     const data = (await axios.get(videoUrl)).data.items;
@@ -74,4 +96,4 @@ const makeChannelRequest = async (channelId) => {
     return await axios.get(channelData);
 }
 
-module.exports = { getVideoData };
+module.exports = { getVideoData, getVideos };
