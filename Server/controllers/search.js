@@ -15,6 +15,13 @@ module.exports = {
         res.json(data)
     },
 
+    async getDislike(req, res) {
+        const { id } = req.params;
+
+        const dislikes = (await getDislike(id))[0].count;
+        res.json(dislikes);
+    },
+
     async dislike(req, res) {
         const { isDisliked, videoID } = req.params;
 

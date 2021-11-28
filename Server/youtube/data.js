@@ -34,10 +34,12 @@ const getVideoData = async (id) => {
     const channelId = data[0].snippet.channelId || '';
     const channelData = (await makeChannelRequest(channelId)).data.items;
 
-    let videoName = '';
-    let description = '';
-    let name = '';
-    let thumbnails = {};
+    const snippet = data[0].snippet;
+
+    let videoName = snippet.title;
+    let description = snippet.description;
+    let name = snippet.channelTitle;
+    let thumbnails = snippet.thumbnails;
 
     const parseVideos = [];
 
@@ -51,12 +53,6 @@ const getVideoData = async (id) => {
             parseVideos.push(dataId);
             top++;
             if (top >= 5) break;
-        } else if (dataId) {
-            const snippet = dataPiece.snippet;
-            videoName = snippet.title;
-            description = snippet.description;
-            name = snippet.channelTitle;
-            thumbnails = snippet.thumbnails;
         }
     }
 

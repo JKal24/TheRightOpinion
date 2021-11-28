@@ -16,14 +16,13 @@ const Landing = () => {
 
   React.useEffect(() => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-
       const url = tabs[0].url;
       let youtubeUrl = new RegExp(".*youtube.com.*v=.*");
         
       if (url && youtubeUrl.test(url)) {
 
         // If it matched the previous regex, it will match this one as well.
-        let id = url?.match("v=[^\?]*")![0];
+        let id = url?.match("v=[^(\?|&)]*")![0];
         id = id?.slice(2, id.length)!;
         dispatch(readStats(id)).then(_ => {
           navigate(`/search`);
@@ -43,6 +42,12 @@ const Landing = () => {
     setText(e.currentTarget.value);
   }
 
+  function isEnter(e : React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key == "Enter") {
+      searchText();
+    }
+  }
+
   function searchText() {
     dispatch(readVideos(text)).then(_ => {
       navigate(`/results`);
@@ -52,7 +57,7 @@ const Landing = () => {
   return (
     <div className="landing">
       <div className="search-bar">
-        <input type="text" className="SearchText" onChange={updateText}></input>
+        <input type="text" className="SearchText" onChange={updateText} onKeyDown={isEnter}></input>
         <button className="Search" onClick={searchText}><FiSearch/></button>
       </div>
       {
