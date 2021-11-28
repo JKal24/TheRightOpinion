@@ -37,16 +37,19 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="Landing">
+    <div className="landing">
+      <div className="search-bar">
+
+      </div>
       <input type="text" className="SearchText"></input>
       <button className="Search"><FiSearch/></button>
       {
         hasPage ? (
-          <div>
+          <div className="info">
             Searching your current page...
           </div>
         ) : (
-          <div>
+          <div className="info">
             Not on a youtube video page, feel free to search for a video using an ID.
           </div>
         )

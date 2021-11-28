@@ -15,7 +15,11 @@ pool.on("error", (err, client) => {
 module.exports = {
 
     async addDislike(videoId) {
-        await pool.query("INSERT INTO dislikes (id) VALUES($1) ON CONFLICT (id) DO UPDATE SET count = dislikes.count + 1", [videoId]);
+        await pool.query("INSERT INTO dislikes (id, count) VALUES($1, 0) ON CONFLICT (id) DO UPDATE SET count = dislikes.count + 1", [videoId]);
+    },
+
+    async removeDislike(videoId) {
+        await pool.query("INSERT INTO dislikes (id, count) VALUES($1, 0) ON CONFLICT (id) DO UPDATE SET count = dislikes.count - 1", [videoId]);
     },
 
     async getDislike(videoId) {
