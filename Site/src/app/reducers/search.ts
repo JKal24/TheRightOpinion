@@ -5,7 +5,6 @@ export const readVideos = createAsyncThunk('videos/input',
     async (query: string, { rejectWithValue }) => {
         try {
             const data = await getVideos(query);
-            console.log(data);
             return data;
         } catch (err) {
             rejectWithValue("Could not gather stats for the given url");
