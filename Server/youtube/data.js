@@ -21,7 +21,6 @@ const getVideos = async (query) => {
         })
     }
 
-    console.log(videos);
     return videos;
 }
 
