@@ -9,6 +9,12 @@ module.exports = {
         res.json(data)
     },
 
+    async searchVideos(req, res) {
+        const { query } = req.params;
+        const data = await getVideoData(query);
+        res.json(data)
+    },
+
     async dislike(req, res) {
         const { isDisliked, videoID } = req.params;
 
