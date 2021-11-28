@@ -16,7 +16,7 @@ const getVideos = async (query) => {
             id: video.id.videoId,
             title: video.snippet.title,
             description: video.snippet.description,
-            thumbnails: video.snippet.thumbnails,
+            thumbnails: video.snippet.thumbnails.default.url,
             author: video.snippet.channelTitle
         })
     }
