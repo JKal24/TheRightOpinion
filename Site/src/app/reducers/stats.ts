@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPageStats, updateDislikes } from '../../data'
+import { getPageStats, updateDislikes, getDislikes } from '../../data'
 
 export const readStats = createAsyncThunk('stats/input',
     async (id: string, { rejectWithValue }) => {
         try {
             const data = await getPageStats(id);
+            const dislikes = await getDislikes(id);
+            data.dislikes = dislikes;
             return data;
         } catch (err) {
             rejectWithValue("Could not gather stats for the given url");

@@ -5,6 +5,10 @@
     padding: 0.2rem;
 }
 
+.search {
+    width: 28rem;
+}
+
 .search-bar {
     display: flex;
     flex-flow: nowrap row;

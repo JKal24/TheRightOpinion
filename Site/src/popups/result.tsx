@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from 'react-router-dom';
 import { readStats } from "../app/reducers/stats";
-import './search.css';
+import './result.css';
 
 const Result = () => {
     
@@ -15,7 +15,6 @@ const Result = () => {
     function changePage(i : number) {
         const video = videos[i];
 
-        console.log(video.id);
         dispatch(readStats(video.id)).then(_ => {
             navigate(`/search`);
         })
@@ -30,7 +29,7 @@ const Result = () => {
                             <Image src={video.thumbnails} roundedCircle fluid />
                         </div>
                         <div className="text">
-                            <h2>{video.title} by {video.author}</h2>
+                            <h2>{video.title.replace("&#39;", "'")} by {video.author}</h2>
                             <h5>{video.description.substring(0,35)}  ...</h5>
                         </div>
                     </button>)

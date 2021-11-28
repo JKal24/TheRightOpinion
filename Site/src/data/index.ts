@@ -8,6 +8,10 @@ export async function updateDislikes(isDisliked : any, videoID : any) {
     return (await axios.get(`http://localhost:3000/dislike/${isDisliked}/${videoID}`)).data;
 }
 
+export async function getDislikes(videoID : any) {
+    return (await axios.get(`http://localhost:3000/dislike/get/${videoID}`)).data;
+}
+
 export async function getVideos(query : string) {
     return (await axios.get(`http://localhost:3000/videos/${query}`)).data || [];
 }
