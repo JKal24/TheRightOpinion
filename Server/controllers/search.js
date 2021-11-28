@@ -1,4 +1,5 @@
 const { getVideoData } = require('../youtube/data');
+const { addDislike, removeDislike, getDislike } = require('../database');
 
 module.exports = {
 
@@ -6,6 +7,19 @@ module.exports = {
         const { id } = req.params;
         const data = await getVideoData(id);
         res.json(data)
+    },
+
+    async dislike(req, res) {
+        const { isDisliked, videoID } = req.params;
+
+        if (isDisliked == 'y') {
+            await removeDislike(videoID);
+        } else {
+            await addDislike(videoID);
+        }
+
+        const dislikes = (await getDislike(videoID))[0].count;
+        res.json(dislikes);
     }
 
 }

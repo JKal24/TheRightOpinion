@@ -1,9 +1,4 @@
-.Landing {
-    width: 800px;
-    height: 1200px;
-}
-
-.Search {
+.search, .landing {
     display: block;
     background-color: rgb(195, 195, 195);
     border: 0.2rem black solid;
@@ -12,9 +7,11 @@
 
 .header, .count, .sentiment {
     display: flex;
+    align-items: center;
     flex-direction: row;
     word-wrap: break-word;
-    justify-content: space-around;  
+    justify-content: space-around;
+    border: 0.1rem black solid;
 }
 
 .header {
@@ -22,12 +19,30 @@
 }
 
 .count, .sentiment {
-    width: 100%;
+    width: auto;
+}
+
+.description {
+    border: 0.1rem black solid;
+}
+
+.likes, .dislikes {
+    display: flex;
+    align-items: center;
+    flex-flow: nowrap row;
+}
+
+.likes > *, .dislikes > * {
+    margin: 0.1rem;
 }
 
 .dislikes {
-    display: flex;
-    flex-flow: nowrap row;
+    background-color: rgb(163, 92, 92);
+}
+
+.dislikes:hover {
+    color: rgb(88, 82, 82);
+    background-color: rgb(183, 102, 102);
 }
 
 .title {
@@ -39,4 +54,9 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+}
+
+.search-bar {
+    display: flex;
+    flex-flow: nowrap row;
 }

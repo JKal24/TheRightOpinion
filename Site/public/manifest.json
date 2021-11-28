@@ -30,6 +30,7 @@
         "content.js"
       ]
     }
-  ],
-  "permissions": ["tabs"]
+  ], 
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["tabs", "cookies", "<all_urls>"]
 }

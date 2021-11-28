@@ -50,7 +50,8 @@ const getVideoData = async (id) => {
         videoName,
         description,
         name,
-        thumbnails
+        thumbnails,
+        id
     }
 }
 
