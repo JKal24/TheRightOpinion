@@ -8,7 +8,7 @@ import { useAppDispatch } from "../app/hooks";
 
 const Landing = () => {
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [text, setText] = React.useState('');

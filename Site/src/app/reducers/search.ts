@@ -13,7 +13,7 @@ export const readVideos = createAsyncThunk('videos/input',
     }
 )
 
-let videos : { id : string, title : string, description : string, thumbnailUrl: string, author : string}[] = [];
+let videos : { id : string, title : string, description : string, thumbnails: string, author : string}[] = [];
 
 const videosSlice = createSlice({
     name: "videos",

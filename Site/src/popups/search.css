@@ -1,0 +1,17 @@
+.videos {    
+    background-color: rgb(195, 195, 195);
+    display: flex;
+    flex-flow: wrap column;
+}
+
+.video {
+    display: flex;
+    flex-flow: nowrap row;
+    width: max-content;
+    border: 0.1rem black solid;
+}
+
+.video:hover {
+    color: yellow;
+    background-color: steelblue;
+}
