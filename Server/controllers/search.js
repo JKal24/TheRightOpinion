@@ -1,4 +1,4 @@
-const { getVideoData } = require('../youtube/data');
+const { getVideoData, getVideos } = require('../youtube/data');
 const { addDislike, removeDislike, getDislike } = require('../database');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 
     async searchVideos(req, res) {
         const { query } = req.params;
-        const data = await getVideoData(query);
+        const data = await getVideos(query);
         res.json(data)
     },
 

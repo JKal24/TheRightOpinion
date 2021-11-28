@@ -1,14 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getVideos } from '../../data'
 
+export const readVideos = createAsyncThunk('videos/input',
+    async (query: string, { rejectWithValue }) => {
+        try {
+            const data = await getVideos(query);
+            console.log(data);
+            return data;
+        } catch (err) {
+            rejectWithValue("Could not gather stats for the given url");
+        }
+    }
+)
+
+let videos : { id : string, title : string, description : string, thumbnailUrl: string, author : string}[] = [];
+
 const videosSlice = createSlice({
     name: "videos",
     initialState: {
-        id: '',
-        title: '',
-        description: '',
-        thumbnails: [],
-        author: ''
+        videos
     },
-    reducers: { }
+    reducers: { },
+    extraReducers: (builder) => {
+        builder.addCase(readVideos.fulfilled, (state, action) => {
+            const data = action.payload;
+
+            state.videos = data;
+        })
+    }
 });
+
+export default videosSlice.reducer;

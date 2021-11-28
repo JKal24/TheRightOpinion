@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import statsReducer from './reducers/stats';
+import resultReducer from './reducers/search';
 
 export const store = configureStore({
     reducer: {
         stats: statsReducer,
+        results: resultReducer
     }
 });
 
