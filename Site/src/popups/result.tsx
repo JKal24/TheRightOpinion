@@ -15,6 +15,7 @@ const Result = () => {
     function changePage(i : number) {
         const video = videos[i];
 
+        console.log(video.id);
         dispatch(readStats(video.id)).then(_ => {
             navigate(`/search`);
         })
@@ -25,10 +26,10 @@ const Result = () => {
             {
                 videos.map((video, i) => {
                     return (<button className="video" onClick={() => changePage(i)}>
-                        <div>
-                            <Image className="title" src={video.thumbnails} roundedCircle fluid />
+                        <div className="image">
+                            <Image src={video.thumbnails} roundedCircle fluid />
                         </div>
-                        <div>
+                        <div className="text">
                             <h2>{video.title} by {video.author}</h2>
                             <h5>{video.description.substring(0,35)}  ...</h5>
                         </div>

@@ -23,10 +23,6 @@
     border: 0.1rem black solid;
 }
 
-.header {
-    width: max-content;
-}
-
 .count, .sentiment {
     width: auto;
 }
